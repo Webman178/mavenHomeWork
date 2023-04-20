@@ -41,11 +41,20 @@ public class Application {
         System.out.println("-----------------------------");
 
         EmployeeDAO emp = new EmployeeDAOImpl();
+        System.out.println("Все пользователи");
         printList(emp.getAllEmployees());
-        Employee employee1 = new Employee("Федоров", "Василий", "male", 31, 1);
-        Employee employee2 = new Employee("Темчук", "Захар", "male", 19, 1);
+        Employee employee1 = new Employee("Soso", "Igor", "male", 31, 1);
+        Employee employee2 = new Employee("Ulianov", "Lenin", "male", 19, 2);
         emp.addEmployee(employee1);
+        System.out.println("После добавления добавления пользователя: "+employee1);
         printList(emp.getAllEmployees());
-        System.out.println("Пользователь c ID"+emp.getId(employee1)+" - "+employee1);
+        int id = emp.getId(employee1);
+        System.out.println("ID = "+id);
+        emp.updateEmployee(id,employee2);
+        System.out.println("После изменения  пользователя: "+employee2);
+        printList(emp.getAllEmployees());
+        emp.deleteEmployee(id);
+        System.out.println("После удаления  пользователя: "+employee2);
+        printList(emp.getAllEmployees());
     }
 }

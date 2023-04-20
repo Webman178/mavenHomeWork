@@ -70,7 +70,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     @Override
     public void updateEmployee(int id, Employee employee) {
-        String qwery = "UPDATE employee SET first_name =  ?, last_name = ?, gender = ?, age = ?, city_id = ?";
+        String qwery = "UPDATE employee SET first_name =  ?, last_name = ?, gender = ?, age = ?, city_id = ? WHERE id = ?";
         try (Connection connection = MyConnection.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(qwery);
             preparedStatement.setString(1,employee.getFirst_name());
@@ -78,6 +78,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             preparedStatement.setString(3,employee.getGender());
             preparedStatement.setInt(4,employee.getAge());
             preparedStatement.setInt(5,employee.getCity_id());
+            preparedStatement.setInt(6,id);
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
