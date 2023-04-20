@@ -107,6 +107,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
             preparedStatement.setInt(3,employee.getAge());
 
             ResultSet resultSet=preparedStatement.executeQuery();
+            resultSet.next();
             i=resultSet.getInt("id");
         } catch (SQLException e) {
             e.printStackTrace();
